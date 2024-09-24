@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Progress</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <h1>User Progress</h1>
+    <table>
+      <thead>
+        <tr>
+          <th><a href="?token={{ request.args.get('token') }}&sort=email&order={{ 'asc' if request.args.get('order') == 'desc' else 'desc' }}" class="{{ 'asc' if request.args.get('sort') == 'email' and request.args.get('order') == 'asc' else '' }}">User Email</a></th>
+          <th><a href="?token={{ request.args.get('token') }}&sort=questions_answered&order={{ 'asc' if request.args.get('order') == 'desc' else 'desc' }}" class="{{ 'asc' if request.args.get('sort') == 'questions_answered' and request.args.get('order') == 'asc' else '' }}">Questions Answered</a></th>
+          <th><a href="?token={{ request.args.get('token') }}&sort=videos_watched&order={{ 'asc' if request.args.get('order') == 'desc' else 'desc' }}" class="{{ 'asc' if request.args.get('sort') == 'videos_watched' and request.args.get('order') == 'asc' else '' }}">Videos Watched</a></th>
+          <th><a href="?token={{ request.args.get('token') }}&sort=points&order={{ 'asc' if request.args.get('order') == 'desc' else 'desc' }}" class="{{ 'asc' if request.args.get('sort') == 'points' and request.args.get('order') == 'asc' else '' }}">Points</a></th>
+          <th><a href="?token={{ request.args.get('token') }}&sort=completed&order={{ 'asc' if request.args.get('order') == 'desc' else 'desc' }}" class="{{ 'asc' if request.args.get('sort') == 'completed' and request.args.get('order') == 'asc' else '' }}">Completed</a></th>
+          <th><a href="?token={{ request.args.get('token') }}&sort=createdAt&order={{ 'asc' if request.args.get('order') == 'desc' else 'desc' }}" class="{{ 'asc' if request.args.get('sort') == 'createdAt' and request.args.get('order') == 'asc' else '' }}">Created At</a></th>
+          <th><a href="?token={{ request.args.get('token') }}&sort=updatedAt&order={{ 'asc' if request.args.get('order') == 'desc' else 'desc' }}" class="{{ 'asc' if request.args.get('sort') == 'updatedAt' and request.args.get('order') == 'asc' else '' }}">Updated At</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for progress in user_progress %}
+        <tr>
+          <td>{{ progress.email }}</td>
+          <td>{{ progress.questions_answered }}</td>
+          <td>{{ progress.videos_watched }}</td>
+          <td>{{ progress.points }}</td>
+          <td>{{ progress.completed }}</td>
+          <td>{{ progress.createdAt }}</td>
+          <td>{{ progress.updatedAt }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
