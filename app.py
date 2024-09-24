@@ -8,11 +8,11 @@ load_dotenv()
 
 NEXTJS_API_URL = os.getenv("NEXTJS_API_URL")
 
-@app.route('/')
+@app.route('/admin')
 def index():
     return render_template('index.html')
 
-@app.route('/user-progress', methods=['POST', 'GET'])
+@app.route('/admin/user-progress', methods=['POST', 'GET'])
 def user_progress():
     if request.method == 'POST':
         token = request.form.get('token')
