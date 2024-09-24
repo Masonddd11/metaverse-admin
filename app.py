@@ -8,7 +8,7 @@ load_dotenv()
 
 NEXTJS_API_URL = os.getenv("NEXTJS_API_URL")
 
-@app.route('/admin')
+@app.route('/admin/')
 def index():
     return render_template('index.html')
 
